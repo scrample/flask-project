@@ -1,0 +1,18 @@
+.superpuper{
+    border: 1px solid black;
+    width: 50%;
+    height: 100px;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    background: #000;
+}
+.superpuper li{
+    list-style: none;
+    letter-spacing: 2px;
+    color: #fff;
+}
+h1{
+    text-align: center;
+    text-transform: uppercase;
+}

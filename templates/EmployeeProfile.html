@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='UserProfile.css') }}">
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+    <div class="container">
+        <div class="userspace">
+            <div class="panelHeader">
+                <ul> 
+                    <!--<li><a href="#">rank: {{ current_user.getRank() }}</a></li>-->
+                    <li><a href="#">Login as {{ current_user.getEmail() }}</a></li>
+                    <li><a href="#" id="open" class="open-button" onclick="openForm()">Add Client</a></li>
+                    <li><a href="#"class="open-button" onclick="openForm1()">Fines</a></li>
+                    <li><a href="#"class="open-button" onclick="openForm2()">Reservation</a></li>
+                    <li><a href="#"class="open-button" onclick="openForm3()">add record</a></li>
+                </ul>
+            <a href="{{url_for('logout')}}" class="logout">Logout</a>
+            </div>
+            <div class="form-holder">
+                <div class="form-popup" id="myForm">
+                    <form action="/AddClientByEmployee" class="form-container" method="POST">
+                      <h1>Add Client</h1>
+                  
+                      <label for="ClientName"><b>Name</b></label>
+                      <input type="text" placeholder="Name" name="ClientName" required>
+                  
+                      <label for="ClientSurname"><b>Surname</b></label>
+                      <input type="text" placeholder="Name" name="ClientSurname" required>
+
+                      <label for="ClientPhone"><b>Phone</b></label>
+                      <input type="text" placeholder="Name" name="ClientPhone" required>
+                  
+                      <button type="submit" class="btn">Push</button>
+                      <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+                    </form>
+                  </div>
+
+                  <div class="form-popup" id="myForm1">
+                    <form action="/AddFinesToClient" class="form-container" method="POST">
+                      <h1>Fines</h1>
+                  
+                      <label for="ClientName"><b>Name</b></label>
+                      <input type="text" placeholder="Name" name="ClientName" required>
+                  
+                      <label for="ClientSurname"><b>Surname</b></label>
+                      <input type="text" placeholder="surname" name="ClientSurname" required>
+                      
+                      <label for="Reason"><b>Reason</b></label>
+                      <input type="text" placeholder="Reason" name="Reason" required>
+
+                      <label for="FineSum"><b>Fine Value</b></label>
+                      <input type="text" placeholder="Fine sum" name="FineSum" required>
+                  
+                      <button type="submit" class="btn">Push</button>
+                      <button type="submit" class="btn cancel" onclick="closeForm1()">Close</button>
+                    </form>
+                  </div>
+
+                  <div class="form-popup" id="myForm2">
+                    <form action="/AddReservation" class="form-container" method="POST">
+                      <h1>Reservation</h1>
+                  
+                      <label for="ClientName"><b>Name</b></label>
+                      <input type="text" placeholder="Name" name="ClientName" required>
+                  
+                      <label for="ClientSurname"><b>Surname</b></label>
+                      <input type="text" placeholder="surname" name="ClientSurname" required>
+                      
+                      <label for="CarModel"><b>CarModel</b></label>
+                      <input type="text" placeholder="CarModel" name="CarModel" required>
+
+                      <label for="Time"><b>Fine Value</b></label>
+                      <input type="text" placeholder="Time" name="Time" required>
+                  
+                      <button type="submit" class="btn">Push</button>
+                      <button type="submit" class="btn cancel" onclick="closeForm2()">Close</button>
+                    </form>
+                  </div>
+
+                  <div class="form-popup" id="myForm3">
+                    <form action="/AddRecord" class="form-container" method="POST">
+                      <h1>Record</h1>
+                  
+                      <label for="ClientName"><b>Name</b></label>
+                      <input type="text" placeholder="Name" name="ClientName" required>
+                  
+                      <label for="ClientSurname"><b>Surname</b></label>
+                      <input type="text" placeholder="surname" name="ClientSurname" required>
+                      
+                      <label for="CarModel"><b>CarModel</b></label>
+                      <input type="text" placeholder="CarModel" name="CarModel" required>
+
+                      <label for="Hours"><b>Hours</b></label>
+                      <input type="text" placeholder="Hours" name="Hours" required>
+                  
+                      <button type="submit" class="btn">Push</button>
+                      <button type="submit" class="btn cancel" onclick="closeForm3()">Close</button>
+                    </form>
+                  </div>
+            </div>
+        </div>
+    </div>   
+    <script>
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+        
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+        function openForm1() {
+          document.getElementById("myForm1").style.display = "block";
+        }
+        
+        function closeForm1() {
+          document.getElementById("myForm1").style.display = "none";
+        }
+
+        function openForm2() {
+          document.getElementById("myForm2").style.display = "block";
+        }
+        
+        function closeForm2() {
+          document.getElementById("myForm2").style.display = "none";
+        }
+
+        function openForm3() {
+          document.getElementById("myForm3").style.display = "block";
+        }
+        
+        function closeForm3() {
+          document.getElementById("myForm3").style.display = "none";
+        }
+        function openForm4() {
+          document.getElementById("myForm4").style.display = "block";
+        }
+        
+        function closeForm4() {
+          document.getElementById("myForm4").style.display = "none";
+        }
+        </script>
+
+        <script type="text/javascript">
+            function createSquare(){
+            const section = document.querySelector("div");
+            const square = document.createElement("span");
+    
+            var size = Math.random() * 50;
+    
+            square.style.width = 10 + size + 'px';
+            square.style.height = 10 + size + 'px';
+    
+            square.style.top = Math.random() * innerHeight + 'px';
+            square.style.left = Math.random() * innerWidth + 'px';
+    
+            section.appendChild(square);
+    
+            setTimeout(() =>{
+                square.remove()
+            }, 5000)
+        }
+        setInterval(createSquare, 150)
+        </script>
+{% endblock %}

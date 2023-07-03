@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+    <section class="banner"></section>
+    <script type="text/javascript">
+        window.addEventListener("scroll", function(){
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+
+        function createSquare(){
+        const section = document.querySelector("section");
+        const square = document.createElement("span");
+
+        var size = Math.random() * 50;
+
+        square.style.width = 10 + size + 'px';
+        square.style.height = 10 + size + 'px';
+
+        square.style.top = Math.random() * innerHeight + 'px';
+        square.style.left = Math.random() * innerWidth + 'px';
+
+        section.appendChild(square);
+
+        setTimeout(() =>{
+            square.remove()
+        }, 5000)
+    }
+    setInterval(createSquare, 150)
+    </script>
+{% endblock %}

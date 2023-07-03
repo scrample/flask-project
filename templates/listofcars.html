@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='UserProfile.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='listofclients.css') }}">
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<div class="container">
+    <div class="userspace">
+        <div class="panelHeader">
+            <ul> 
+                <!--<li><a href="#">rank: {{ current_user.getRank() }}</a></li>-->
+                <li><a href="#">Login as {{ current_user.getEmail() }}</a></li>
+            </ul>
+        <a href="{{url_for('AdminProfile')}}" class="logout">AdminProfile</a>
+        <a href="{{url_for('logout')}}" class="logout">Logout</a>
+        </div>
+        <h1>List of cars</h1>
+        {% for line in lines -%}
+        <div class="superpuper">
+            <li>Car id:{{line.car_id}}</li>
+            <li>Car model:{{line.model}}</li>
+            <li>Car number:{{line.car_number}}</li>
+            <li>Car price per hour:{{line.price}}</li>
+        </div>
+        {% endfor -%}
+    </div>
+</div>
+  
+
+    
+
+    <script type="text/javascript">
+        function createSquare(){
+        const section = document.querySelector("div");
+        const square = document.createElement("span");
+
+        var size = Math.random() * 50;
+
+        square.style.width = 10 + size + 'px';
+        square.style.height = 10 + size + 'px';
+
+        square.style.top = Math.random() * innerHeight + 'px';
+        square.style.left = Math.random() * innerWidth + 'px';
+
+        section.appendChild(square);
+
+        setTimeout(() =>{
+            square.remove()
+        }, 5000)
+    }
+    setInterval(createSquare, 150)
+    </script>
+{% endblock %}

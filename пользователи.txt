@@ -1,0 +1,4 @@
+email: user1@mail.ru psw: 12345
+email: admin@mail.ru psw: admin
+email: employee1@mail.ru psw: 12345
+email: employee2@mail.ru psw: 12345

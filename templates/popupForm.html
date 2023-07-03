@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static',filename='FormStyle.css') }}">
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title login">
+               Login
+            </div>
+            <div class="title signup">
+               Registration
+            </div>
+         </div>
+         <div class="form-container">
+            {% for msg in get_flashed_messages() %}
+            <div class="flash">{{msg}}</div>
+            {% endfor %}
+            <div class="slide-controls">
+               <input type="radio" name="slide" id="login" checked>
+               <input type="radio" name="slide" id="signup">
+               <label for="login" class="slide login">Login</label>
+               <label for="signup" class="slide signup">Registration</label>
+               <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+               <form action="/loginForm" class="login" method="POST">
+                  <div class="field">
+                     <input type="text" placeholder="Email" name="UserEmail" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" placeholder="Password" name="UserPassword" required>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Login" name="">
+                  </div>
+                  <div class="signup-link">
+                     Not a member? <a href="">Registration</a>
+                  </div>
+               </form>
+               <form action="/registrationForm" class="signup" method="POST">
+                  <div class="field">
+                     <input type="text" placeholder="Email Address" name="RegistrationEmail" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" placeholder="Password" name="RegistrationPassword" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" placeholder="Confirm password" name="RegistrationPassword2" required>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Signup">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <script>
+         const loginText = document.querySelector(".title-text .login");
+         const loginForm = document.querySelector("form.login");
+         const loginBtn = document.querySelector("label.login");
+         const signupBtn = document.querySelector("label.signup");
+         const signupLink = document.querySelector("form .signup-link a");
+         signupBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "-50%";
+           loginText.style.marginLeft = "-50%";
+         });
+         loginBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "0%";
+           loginText.style.marginLeft = "0%";
+         });
+         signupLink.onclick = (()=>{
+           signupBtn.click();
+           return false;
+         });
+      </script>
+{% endblock %}
